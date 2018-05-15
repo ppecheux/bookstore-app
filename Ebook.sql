@@ -1,4 +1,7 @@
 CREATE TABLE Categorie (
     nom VARCHAR PRIMARY KEY,
-    description VARCHAR 
+    description VARCHAR ); 
+    
+CREATE TABLE Licence (
+    
 )
