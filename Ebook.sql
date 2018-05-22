@@ -13,14 +13,16 @@ DROP TABLE Categorie;
 CREATE TABLE Categorie (
     nom VARCHAR(255) PRIMARY KEY,
     description VARCHAR );
+    
+INSERT INTO Categorie (nom, description)
+VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
 
-CREATE TABLE Licence (
-  nom VARCHAR(255) PRIMARY KEY,
-  droitModification BOOLEAN NOT NULL ,
-  partageMemeCondition BOOLEAN NOT NULL ,
-  droitUtilisationCommercial BOOLEAN NOT NULL ,
-  UNIQUE (droitModification,partageMemeCondition,droitUtilisationCommercial)
-);
+INSERT INTO Categorie (nom, description)
+VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
+
+
+INSERT INTO Categorie (nom, description)
+VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
 
 CREATE TABLE Auteur (
   nom VARCHAR(255),
@@ -75,7 +77,6 @@ CREATE TABLE Aime (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
     langue VARCHAR(255),
-    PRIMARY KEY(utilisateur,titre,langue),
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
@@ -84,19 +85,9 @@ CREATE TABLE Telechargement (
     titre VARCHAR(255),
     langue VARCHAR(255),
     prixAchat FLOAT,
-    PRIMARY KEY(utilisateur,titre,langue),
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
-CREATE TABLE Ecrire (
-    auteurNom VARCHAR(255),
-    auteurPrenom VARCHAR(255),
-    titre VARCHAR(255),
-    langue VARCHAR(255),
-    PRIMARY KEY (auteurNom,auteurPrenom,titre,langue),
-    FOREIGN KEY(auteurNom,auteurPrenom) REFERENCES Auteur(prenom,nom),
-    FOREIGN KEY(titre,langue) REFERENCES Livre(titre,langue)
-);
 CREATE TABLE Reference (
     auteurNom VARCHAR(255),
     auteurPrenom VARCHAR(255),
