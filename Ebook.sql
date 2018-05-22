@@ -43,9 +43,9 @@ CREATE TABLE Abonnement (
 CREATE TABLE Reference (
     auteurNom VARCHAR(255) REFERENCES Auteur(nom),
     auteurPrenom VARCHAR(255) REFERENCES Auteur(prenom),
-    livre VARCHAR(255) REFERENCES Livre(titre),
+    titre VARCHAR(255) REFERENCES Livre(titre),
     langue VARCHAR(255) REFERENCES Livre(langue),
     PRIMARY KEY (auteurNom,auteurPrenom,livre, langue),
     FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom),
-    FOREIGN KEY (livre,langue) REFERENCES Livre(nom,prenom),
+    FOREIGN KEY (livre,langue) REFERENCES Livre(titre,langue),
 );
