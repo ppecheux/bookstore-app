@@ -1,4 +1,4 @@
-DROP VIEW vVedette;
+﻿DROP VIEW vVedette;
 DROP TABLE Ecrire;
 DROP TABLE Reference; 
 DROP TABLE Telechargement;
@@ -33,12 +33,7 @@ CREATE TABLE Auteur (
   PRIMARY KEY (nom,prenom)
 );
 
-INSERT INTO Auteur (nom, prenom, biographie, nationalite)
-VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps','France');
-INSERT INTO Auteur (nom, prenom )
-VALUES ('Kevin','Olivera');
-INSERT INTO Auteur (nom,prenom,nationalite )
-VALUES ('Dominique','DesMaths', 'GR');
+
 
 CREATE TABLE Livre (
   titre VARCHAR(255), 
@@ -153,3 +148,10 @@ INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisati
 VALUES (5,TRUE,TRUE,FALSE);
 INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
 VALUES (6,FALSE,TRUE,FALSE);
+
+INSERT INTO Auteur (nom, prenom, biographie, nationalite)
+VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps','France');
+INSERT INTO Auteur (nom, prenom )
+VALUES ('Kevin','Olivera');
+INSERT INTO Auteur (nom,prenom,nationalite )
+VALUES ('Dominique','DesMaths', 'GR');
