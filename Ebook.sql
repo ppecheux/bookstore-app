@@ -18,6 +18,16 @@ CREATE TABLE Auteur (
   PRIMARY KEY (nom,prenom)
 );
 
+CREATE TABLE Reference (
+    auteurNom VARCHAR(255) REFERENCES Auteur(nom),
+    auteurPrenom VARCHAR(255) REFERENCES Auteur(prenom),
+    livre VARCHAR(255) REFERENCES Livre(titre),
+    langue VARCHAR(255) REFERENCES Livre(langue),
+    FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom),
+    PRIMARY KEY (auteurNom,auteurPrenom,livre, langue),
+    FOREIGN KEY (livre,langue) REFERENCES Livre(nom,prenom),
+);
+
 CREATE TABLE Livre (
   titre VARCHAR(255), 
   langue VARCHAR(255), 
