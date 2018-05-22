@@ -18,7 +18,7 @@ CREATE TABLE Categorie (
 
 
 CREATE TABLE Licence (
-  nom VARCHAR(255) PRIMARY KEY,
+  id INTEGER PRIMARY KEY,
   droitModification BOOLEAN NOT NULL ,
   partageMemeCondition BOOLEAN NOT NULL ,
   droitUtilisationCommercial BOOLEAN NOT NULL ,
@@ -47,9 +47,9 @@ CREATE TABLE Livre (
   resume VARCHAR(255), 
   datePublication DATE, 
   categorie VARCHAR(255) NOT NULL, 
-  licence VARCHAR(255) NOT NULL, 
+  licence INTEGER NOT NULL, 
   FOREIGN KEY(categorie) REFERENCES Categorie(nom), 
-  FOREIGN KEY(licence) REFERENCES Licence(nom), 
+  FOREIGN KEY(licence) REFERENCES Licence(id), 
   PRIMARY KEY(titre, langue)
 ); 
 
@@ -124,7 +124,7 @@ CREATE TABLE Ecrire (
 CREATE VIEW vVedette AS
 SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
 FROM(
-    SELECT Livre.titre, Livre.langue, Livre.datePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
+    SELECT Livre.titre, Livre.langue, Livre.datePublication, Livre.page, Livre.resume, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
     FROM Livre,Vedette
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
 ) AS sousRequete
@@ -141,15 +141,15 @@ INSERT INTO Categorie (nom, description)
 VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
 
 
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by',TRUE,FALSE,TRUE);
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by_sa',TRUE,TRUE,TRUE);
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by_nd',FALSE,FALSE,TRUE);
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by_cd',TRUE,FALSE,FALSE);
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by_cc_sa',TRUE,TRUE,FALSE);
-INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES ('cc_by_nc_nd',FALSE,TRUE,FALSE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (1,TRUE,FALSE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (2,TRUE,TRUE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (3,FALSE,FALSE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (4,TRUE,FALSE,FALSE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (5,TRUE,TRUE,FALSE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (6,FALSE,TRUE,FALSE);
