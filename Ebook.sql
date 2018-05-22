@@ -17,3 +17,7 @@ CREATE TABLE Auteur (
   nationalite VARCHAR(255),
   PRIMARY KEY (nom,prenom)
 );
+
+CREATE TABLE Livre (
+  
+)
