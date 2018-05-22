@@ -130,3 +130,17 @@ VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
 
 INSERT INTO Categorie (nom, description)
 VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
+
+
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by',TRUE,FALSE,TRUE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_sa',TRUE,TRUE,TRUE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_nd',FALSE,FALSE,TRUE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_cd',TRUE,FALSE,FALSE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_cc_sa',TRUE,TRUE,FALSE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_nc_nd',FALSE,TRUE,FALSE);
