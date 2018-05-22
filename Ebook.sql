@@ -8,6 +8,8 @@ DROP TABLE Don;
 DROP TABLE UtilisateursEnregistres; 
 DROP TABLE Vedette; 
 DROP TABLE Livre;
+DROP TABLE Citoyen; 
+DROP TABLE Nationalite; 
 DROP TABLE Auteur;
 DROP TABLE Licence;
 DROP TABLE Categorie;
@@ -29,10 +31,21 @@ CREATE TABLE Auteur (
   nom VARCHAR(255),
   prenom VARCHAR(255),
   biographie VARCHAR(255) UNIQUE,
-  nationalite VARCHAR(255),
   PRIMARY KEY (nom,prenom)
 );
 
+CREATE TABLE Nationalite (
+  pays VARCHAR(255)
+);
+
+CREATE TABLE Citoyen (
+  pays VARCHAR(255), 
+  auteurNom VARCHAR(255), 
+  auteurPrenom VARCHAR(255),
+  FOREIGN KEY(pays) REFERENCES Nationalite(pays), 
+  FOREIGN KEY(auteurNom, auteurPrenom) REFERENCES Auteur(nom, prenom),
+  PRIMARY KEY(pays, auteurNom, auteurPrenom)
+);
 
 
 CREATE TABLE Livre (
