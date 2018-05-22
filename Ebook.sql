@@ -27,14 +27,15 @@ CREATE TABLE UtilisateursEnregistres (
 
 CREATE TABLE Don (
     montantDon FLOAT,
-    dateDon DATE FLOAT,
+    dateDon DATE,
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
      PRIMARY KEY (montantDon,dateDon,utilisateur)
 );
 
 CREATE TABLE Abonnement (
-    auteurNom VARCHAR(255) REFERENCES Auteur(nom),
-    auteurPrenom VARCHAR(255) REFERENCES Auteur(prenom),
+    auteurNom VARCHAR(255),
+    auteurPrenom VARCHAR(255),
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
-    PRIMARY KEY (auteurNom,auteurPrenom,utilisateur)
+    PRIMARY KEY (auteurNom,auteurPrenom,utilisateur),
+    FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom)
 );
