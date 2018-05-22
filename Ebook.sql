@@ -63,7 +63,7 @@ CREATE TABLE Aime (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
     langue VARCHAR(255),
-    FOREIGN KEY (titre,langue) REFERENCES Livre(langue)
+    FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
 CREATE TABLE Telechargement (
@@ -71,7 +71,7 @@ CREATE TABLE Telechargement (
     titre VARCHAR(255),
     langue VARCHAR(255),
     prixAchat FLOAT,
-    FOREIGN KEY (titre,langue) REFERENCES Livre(langue)
+    FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
 CREATE TABLE Reference (
