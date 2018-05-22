@@ -99,7 +99,7 @@ FROM (
     FROM Livre,Vedette
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
 )
-WHERE dateLimite>curdate()
+WHERE dateLimite>curdate();
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
