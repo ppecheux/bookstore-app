@@ -89,8 +89,8 @@ CREATE TABLE Telechargement (
 );
 
 CREATE TABLE Reference (
-    auteurNom VARCHAR(255) REFERENCES Auteur(nom),
-    auteurPrenom VARCHAR(255) REFERENCES Auteur(prenom),
+    auteurNom VARCHAR(255),
+    auteurPrenom VARCHAR(255),
     titre VARCHAR(255),
     langue VARCHAR(255),
     FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom),
