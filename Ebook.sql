@@ -1,16 +1,14 @@
-DROP TABLE Categorie;
-DROP TABLE Licence;
-DROP TABLE Auteur;
-DROP TABLE Livre;
-DROP TABLE Vedette; 
-DROP TABLE UtilisateursEnregistres; 
-DROP TABLE Don; 
-DROP TABLE Abonnement; 
-DROP TABLE Aime; 
-DROP TABLE Telechargement; 
 DROP TABLE Reference; 
-
-
+DROP TABLE Telechargement;
+DROP TABLE Aime;  
+DROP TABLE Abonnement; 
+DROP TABLE Don; 
+DROP TABLE UtilisateursEnregistres; 
+DROP TABLE Vedette; 
+DROP TABLE Livre;
+DROP TABLE Auteur;
+DROP TABLE Licence;
+DROP TABLE Categorie;
 
 CREATE TABLE Categorie (
     nom VARCHAR(255) PRIMARY KEY,
