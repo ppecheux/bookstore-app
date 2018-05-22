@@ -1,14 +1,14 @@
-DROP Categorie;
-DROP Licence;
-DROP Auteur;
-DROP Livre;
-DROP Vedette; 
-DROP UtilisateursEnregistres; 
-DROP Don; 
-DROP Abonnement; 
-DROP Aime; 
-DROP Telechargement; 
-DROP Reference; 
+DROP TABLE Categorie;
+DROP TABLE Licence;
+DROP TABLE Auteur;
+DROP TABLE Livre;
+DROP TABLE Vedette; 
+DROP TABLE UtilisateursEnregistres; 
+DROP TABLE Don; 
+DROP TABLE Abonnement; 
+DROP TABLE Aime; 
+DROP TABLE Telechargement; 
+DROP TABLE Reference; 
 
 
 
