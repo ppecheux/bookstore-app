@@ -18,6 +18,24 @@ CREATE TABLE Auteur (
   PRIMARY KEY (nom,prenom)
 );
 
-CREATE TABLE Livre (
-  
-)
+CREATE TABLE UtilisateursEnregistres (
+    email VARCHAR(255) PRIMARY KEY,
+    motDePasse VARCHAR(255),
+    nom VARCHAR(255),
+    prenom VARCHAR(255)
+);
+
+CREATE TABLE Don (
+    montantDon FLOAT,
+    dateDon DATE,
+    utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
+     PRIMARY KEY (montantDon,dateDon,utilisateur)
+);
+
+CREATE TABLE Abonnement (
+    auteurNom VARCHAR(255),
+    auteurPrenom VARCHAR(255),
+    utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
+    PRIMARY KEY (auteurNom,auteurPrenom,utilisateur),
+    FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom)
+);
