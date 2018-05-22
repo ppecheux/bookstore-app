@@ -95,5 +95,5 @@ CREATE TABLE Reference (
     langue VARCHAR(255),
     FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom),
     PRIMARY KEY (auteurNom,auteurPrenom,titre, langue),
-    FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue),
+    FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
