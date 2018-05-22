@@ -36,7 +36,7 @@ CREATE TABLE Livre (
   langue VARCHAR(255), 
   page INTEGER NOT NULL, 
   resume VARCHAR(255), 
-  DatePublication DATE, 
+  datePublication DATE, 
   categorie VARCHAR(255) NOT NULL, 
   licence VARCHAR(255) NOT NULL, 
   FOREIGN KEY(categorie) REFERENCES Categorie(nom), 
@@ -45,8 +45,8 @@ CREATE TABLE Livre (
 ); 
 
 CREATE TABLE Vedette (
-  DateLimite DATE, 
-  PhraseAccroche VARCHAR(255), 
+  dateLimite DATE, 
+  phraseAccroche VARCHAR(255), 
   titre VARCHAR(255),
   langue VARCHAR(255), 
   PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue), 
@@ -115,7 +115,7 @@ CREATE TABLE Ecrire (
 CREATE VIEW Vedette AS
 SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
 FROM(
-    SELECT Livre.titre, Livre.langue, Livre.DatePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
+    SELECT Livre.titre, Livre.langue, Livre.datePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
     FROM Livre,Vedette
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
 ) AS sousRequete
