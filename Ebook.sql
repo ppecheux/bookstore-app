@@ -127,12 +127,12 @@ CREATE TABLE Ecrire (
 
 CREATE VIEW Vedette AS
 SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
-FROM (
-    SELECT *
+FROM(
+    SELECT Livre.titre, Livre.langue, Livre.DatePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
     FROM Livre,Vedette
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
-)
-WHERE dateLimite>curdate();
+) AS sousRequete
+WHERE sousRequete.dateLimite>curdate();
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
