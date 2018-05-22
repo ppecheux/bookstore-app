@@ -44,16 +44,17 @@ CREATE TABLE Vedette (
 );
 CREATE TABLE UtilisateursEnregistres (
     email VARCHAR(255) PRIMARY KEY,
-    motDePasse VARCHAR(255),
+    motDePasse VARCHAR(255) NOT NULL,
     nom VARCHAR(255),
-    prenom VARCHAR(255)
+    prenom VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Don (
-    montantDon FLOAT,
+    montantDon FLOAT NOT NULL,
     dateDon DATE,
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
-     PRIMARY KEY (montantDon,dateDon,utilisateur)
+    PRIMARY KEY (montantDon,dateDon,utilisateur),
+    CHECK (montantDon>0)
 );
 
 CREATE TABLE Abonnement (
@@ -68,6 +69,7 @@ CREATE TABLE Aime (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
     langue VARCHAR(255),
+    PRIMARY KEY(utilisateur,titre,langue),
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
@@ -75,7 +77,8 @@ CREATE TABLE Telechargement (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
     langue VARCHAR(255),
-    prixAchat FLOAT,
+    prixAchat FLOAT NOT NULL,
+    PRIMARY KEY(utilisateur,titre,langue),
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
@@ -89,6 +92,14 @@ CREATE TABLE Reference (
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
+CREATE VIEW Vedette AS
+SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
+FROM (
+    SELECT *
+    FROM Livre,Vedette
+    WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
+)
+WHERE dateLimite>curdate()
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
