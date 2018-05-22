@@ -33,6 +33,13 @@ CREATE TABLE Auteur (
   PRIMARY KEY (nom,prenom)
 );
 
+INSERT INTO Auteur (nom, prenom, biographie, nationalite)
+VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps','France');
+INSERT INTO Auteur (nom, prenom )
+VALUES ('Kevin','Olivera');
+INSERT INTO Auteur (nom,prenom,nationalite )
+VALUES ('Dominique','DesMaths', 'GR');
+
 CREATE TABLE Livre (
   titre VARCHAR(255), 
   langue VARCHAR(255), 
