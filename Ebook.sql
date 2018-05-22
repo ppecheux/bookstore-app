@@ -100,6 +100,16 @@ CREATE TABLE Reference (
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
+CREATE TABLE Ecrire ( 
+    auteurNom VARCHAR(255), 
+    auteurPrenom VARCHAR(255), 
+    titre VARCHAR(255), 
+    langue VARCHAR(255), 
+    PRIMARY KEY (auteurNom,auteurPrenom,titre,langue), 
+    FOREIGN KEY(auteurNom,auteurPrenom) REFERENCES Auteur(prenom,nom), 
+    FOREIGN KEY(titre,langue) REFERENCES Livre(titre,langue) 
+); 
+
 CREATE VIEW Vedette AS
 SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
 FROM (
