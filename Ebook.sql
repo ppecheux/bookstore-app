@@ -35,7 +35,7 @@ CREATE TABLE Auteur (
 );
 
 CREATE TABLE Nationalite (
-  pays VARCHAR(255)
+  pays VARCHAR(255) PRIMARY KEY
 );
 
 CREATE TABLE Citoyen (
