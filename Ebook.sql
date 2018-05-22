@@ -1,10 +1,10 @@
-﻿DROP TABLE Reference; 
+DROP TABLE Reference;
 DROP TABLE Telechargement;
-DROP TABLE Aime;  
-DROP TABLE Abonnement; 
-DROP TABLE Don; 
-DROP TABLE UtilisateursEnregistres; 
-DROP TABLE Vedette; 
+DROP TABLE Aime;
+DROP TABLE Abonnement;
+DROP TABLE Don;
+DROP TABLE UtilisateursEnregistres;
+DROP TABLE Vedette;
 DROP TABLE Livre;
 DROP TABLE Auteur;
 DROP TABLE Licence;
@@ -23,6 +23,21 @@ CREATE TABLE Licence (
   UNIQUE (droitModification,partageMemeCondition,droitUtilisationCommercial)
 );
 
+
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by',TRUE,FALSE,TRUE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_sa',TRUE,TRUE,TRUE);
+VALUES ('cc_by_nd',FALSE,FALSE,TRUE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_cd',TRUE,FALSE,FALSE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_cc_sa',TRUE,TRUE,FALSE);
+INSERT INTO Licence (nom, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES ('cc_by_nc_nd',FALSE,TRUE,FALSE);
+
+
 CREATE TABLE Auteur (
   nom VARCHAR(255),
   prenom VARCHAR(255),
@@ -32,22 +47,22 @@ CREATE TABLE Auteur (
 );
 
 CREATE TABLE Livre (
-  titre VARCHAR(255), 
-  langue VARCHAR(255), 
-  DatePublication DATE, 
-  categorie VARCHAR(255) NOT NULL, 
-  licence VARCHAR(255) NOT NULL, 
-  FOREIGN KEY(categorie) REFERENCES Categorie(nom), 
-  FOREIGN KEY(licence) REFERENCES Licence(nom), 
+  titre VARCHAR(255),
+  langue VARCHAR(255),
+  DatePublication DATE,
+  categorie VARCHAR(255) NOT NULL,
+  licence VARCHAR(255) NOT NULL,
+  FOREIGN KEY(categorie) REFERENCES Categorie(nom),
+  FOREIGN KEY(licence) REFERENCES Licence(nom),
   PRIMARY KEY(titre, langue)
-); 
+);
 
 CREATE TABLE Vedette (
-  DateLimite DATE, 
-  PhraseAccroche VARCHAR(255), 
+  DateLimite DATE,
+  PhraseAccroche VARCHAR(255),
   titre VARCHAR(255),
-  langue VARCHAR(255), 
-  PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue), 
+  langue VARCHAR(255),
+  PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue),
   FOREIGN KEY (titre, langue) REFERENCES Livre(titre, langue)
 );
 CREATE TABLE UtilisateursEnregistres (
