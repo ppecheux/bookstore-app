@@ -39,3 +39,19 @@ CREATE TABLE Abonnement (
     PRIMARY KEY (auteurNom,auteurPrenom,utilisateur),
     FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom)
 );
+
+CREATE TABLE Aime (
+    utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
+    titre VARCHAR(255),
+    langue VARCHAR(255),
+    FOREIGN KEY (titre,langue) REFERENCES Livre(langue)
+);
+
+CREATE TABLE Telechargement (
+    utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
+    titre VARCHAR(255),
+    langue VARCHAR(255),
+    prixAchat FLOAT,
+    FOREIGN KEY (titre,langue) REFERENCES Livre(langue)
+);
+
