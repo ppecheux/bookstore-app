@@ -79,6 +79,13 @@ CREATE TABLE UtilisateursEnregistres (
     prenom VARCHAR(255)
 );
 
+INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
+VALUES ('Kevin','Integration', 'pcqeudçjdé','cenestpasuneaddresse');
+INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
+VALUES ('Kevin','Integration', 'pcqeudçjdé','adresse@etu.utc.fr');
+INSERT INTO UtilisateursEnregistres (email , motDePasse)
+VALUES ('cettePersonneNaPasDAdresse','passe');
+
 CREATE TABLE Don (
     montantDon FLOAT,
     dateDon DATE,
