@@ -1,4 +1,4 @@
-DROP TABLE Reference; 
+﻿DROP TABLE Reference; 
 DROP TABLE Telechargement;
 DROP TABLE Aime;  
 DROP TABLE Abonnement; 
@@ -13,16 +13,7 @@ DROP TABLE Categorie;
 CREATE TABLE Categorie (
     nom VARCHAR(255) PRIMARY KEY,
     description VARCHAR );
-    
-INSERT INTO Categorie (nom, description)
-VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
 
-INSERT INTO Categorie (nom, description)
-VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
-
-
-INSERT INTO Categorie (nom, description)
-VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
 
 CREATE TABLE Auteur (
   nom VARCHAR(255),
@@ -98,3 +89,13 @@ CREATE TABLE Reference (
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
 
+    
+INSERT INTO Categorie (nom, description)
+VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
+
+INSERT INTO Categorie (nom, description)
+VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
+
+
+INSERT INTO Categorie (nom, description)
+VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
