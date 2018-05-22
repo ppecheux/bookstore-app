@@ -1,4 +1,6 @@
-﻿DROP TABLE Reference; 
+DROP VIEW vVedette;
+DROP TABLE Ecrire;
+DROP TABLE Reference; 
 DROP TABLE Telechargement;
 DROP TABLE Aime;  
 DROP TABLE Abonnement; 
@@ -112,14 +114,14 @@ CREATE TABLE Ecrire (
     FOREIGN KEY(titre,langue) REFERENCES Livre(titre,langue) 
 ); 
 
-CREATE VIEW Vedette AS
+CREATE VIEW vVedette AS
 SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
 FROM(
-    SELECT Livre.titre, Livre.langue, Livre.DatePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
+    SELECT Livre.titre, Livre.langue, Livre.page, Livre.resume, Livre.DatePublication, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
     FROM Livre,Vedette
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
 ) AS sousRequete
-WHERE sousRequete.dateLimite>curdate();
+WHERE sousRequete.dateLimite>DATE(NOW());
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
