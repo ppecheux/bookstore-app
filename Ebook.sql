@@ -163,7 +163,7 @@ VALUES ('Phil234@etu','passe','Phil');
 
 
 CREATE TABLE Don (
-    montantDon FLOAT,
+    montantDon FLOAT NOT NULL,
     dateDon DATE,
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     PRIMARY KEY (montantDon,dateDon,utilisateur),
