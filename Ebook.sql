@@ -80,6 +80,8 @@ CREATE TABLE Vedette (
   PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue), 
   FOREIGN KEY (titre, langue) REFERENCES Livre(titre, langue)
 );
+
+
 CREATE TABLE UtilisateursEnregistres (
     email VARCHAR(255) PRIMARY KEY,
     motDePasse VARCHAR(255) NOT NULL,
@@ -87,20 +89,36 @@ CREATE TABLE UtilisateursEnregistres (
     prenom VARCHAR(255) NOT NULL
 );
 
+
 INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','cenestpasuneaddresse');
 INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','adresse@etu.utc.fr');
 INSERT INTO UtilisateursEnregistres (email , motDePasse, prenom)
 VALUES ('cettePersonneNaPasDAdresse','passe','Jose');
+INSERT INTO UtilisateursEnregistres (email , motDePasse, prenom)
+VALUES ('Ron@edu','passe','Ronald');
+INSERT INTO UtilisateursEnregistres (email , motDePasse, prenom)
+VALUES ('MariannaRo@tub','passe','Rose');
+INSERT INTO UtilisateursEnregistres (email , motDePasse, prenom)
+VALUES ('Phil234@etu','passe','Phil');
+
 
 CREATE TABLE Don (
-    montantDon FLOAT NOT NULL,
+    montantDon FLOAT,
     dateDon DATE,
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     PRIMARY KEY (montantDon,dateDon,utilisateur),
     CHECK (montantDon>0)
 );
+
+INSERT INTO Don (montantDon, dateDon, utilisateur) VALUES (0.1,'2000/01/13','Ron@edu');
+INSERT INTO Don (montantDon, dateDon, utilisateur) VALUES (0.2,'2000/01/13','Ron@edu');
+INSERT INTO Don (montantDon, dateDon, utilisateur) VALUES (0.1,'2000/01/14','Ron@edu');
+--INSERT INTO Don (montantDon, dateDon, utilisateur) VALUES (0.1,'2000/01/13','Alfred@edu'); impossible car alfred n'est pas dans la relation utilisateur
+INSERT INTO Don (montantDon, dateDon, utilisateur) VALUES (0.1,'2000/01/13','Phil234@etu');
+--INSERT INTO Don ( dateDon, utilisateur) VALUES ('2000/01/13','Phil234@etu'); une valeur NULL viole la contrainte NOT NULL de la colonne « montantdon » DETAIL: La ligne en échec contient (null, 2000-01-13, Phil234@etu)
+--INSERT INTO Don (montantDon, utilisateur) VALUES (0.1,'Phil234@etu'); ERREUR: une valeur NULL viole la contrainte NOT NULL de la colonne « datedon » DETAIL: La ligne en échec contient (0.1, null, Phil234@etu)
 
 CREATE TABLE Abonnement (
     auteurNom VARCHAR(255),
