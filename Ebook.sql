@@ -80,8 +80,8 @@ INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','cenestpasuneaddresse');
 INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','adresse@etu.utc.fr');
-INSERT INTO UtilisateursEnregistres (email , motDePasse)
-VALUES ('cettePersonneNaPasDAdresse','passe');
+INSERT INTO UtilisateursEnregistres (email , motDePasse, prenom)
+VALUES ('cettePersonneNaPasDAdresse','passe','Jose');
 
 CREATE TABLE Don (
     montantDon FLOAT NOT NULL,
@@ -147,11 +147,8 @@ WHERE sousRequete.dateLimite>DATE(NOW());
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
-
 INSERT INTO Categorie (nom, description)
 VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
-
-
 INSERT INTO Categorie (nom, description)
 VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
 
@@ -169,9 +166,9 @@ VALUES (5,TRUE,TRUE,FALSE);
 INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
 VALUES (6,FALSE,TRUE,FALSE);
 
-INSERT INTO Auteur (nom, prenom, biographie, nationalite)
-VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps','France');
+INSERT INTO Auteur (nom, prenom, biographie)
+VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps');
 INSERT INTO Auteur (nom, prenom )
 VALUES ('Kevin','Olivera');
-INSERT INTO Auteur (nom,prenom,nationalite )
-VALUES ('Dominique','DesMaths', 'GR');
+INSERT INTO Auteur (nom,prenom )
+VALUES ('Dominique','DesMaths');
