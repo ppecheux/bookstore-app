@@ -18,6 +18,17 @@ CREATE TABLE Categorie (
     nom VARCHAR(255) PRIMARY KEY,
     description VARCHAR );
 
+INSERT INTO Categorie (nom, description)
+VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
+INSERT INTO Categorie (nom, description)
+VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
+INSERT INTO Categorie (nom, description)
+VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
+INSERT INTO Categorie (nom)
+VALUES ('Musique');
+INSERT INTO Categorie (nom)
+VALUES ('Film');
+
 
 CREATE TABLE Licence (
   id INTEGER PRIMARY KEY,
@@ -27,12 +38,32 @@ CREATE TABLE Licence (
   UNIQUE (droitModification,partageMemeCondition,droitUtilisationCommercial)
 );
 
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (1,TRUE,FALSE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (2,TRUE,TRUE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (3,FALSE,FALSE,TRUE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (4,TRUE,FALSE,FALSE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (5,TRUE,TRUE,FALSE);
+INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
+VALUES (6,FALSE,TRUE,FALSE);
+
 CREATE TABLE Auteur (
   nom VARCHAR(255),
   prenom VARCHAR(255),
   biographie VARCHAR(255) UNIQUE,
   PRIMARY KEY (nom,prenom)
 );
+
+INSERT INTO Auteur (nom, prenom, biographie)
+VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps');
+INSERT INTO Auteur (nom, prenom )
+VALUES ('Kevin','Olivera');
+INSERT INTO Auteur (nom,prenom )
+VALUES ('Dominique','DesMaths');
 
 CREATE TABLE Nationalite (
   pays VARCHAR(255) PRIMARY KEY
@@ -58,19 +89,46 @@ CREATE TABLE Citoyen (
   PRIMARY KEY(pays, auteurNom, auteurPrenom)
 );
 
+INSERT INTO Citoyen (pays,auteurNom,auteurPrenom) VALUES ('Allemagne','Kevin','Integration');
+INSERT INTO Citoyen (pays,auteurNom,auteurPrenom) VALUES ('Albanie','Kevin','Integration');
+INSERT INTO Citoyen (pays,auteurNom,auteurPrenom) VALUES ('Albanie','Kevin','Olivera');
+INSERT INTO Citoyen (pays,auteurNom,auteurPrenom) VALUES ('Azerbaïdjan','Kevin','Integration');
 
 CREATE TABLE Livre (
   titre VARCHAR(255), 
   langue VARCHAR(255), 
-  page INTEGER NOT NULL, 
+  page INTEGER NOT NULL,
   resume VARCHAR(255), 
   datePublication DATE, 
   categorie VARCHAR(255) NOT NULL, 
   licence INTEGER NOT NULL, 
   FOREIGN KEY(categorie) REFERENCES Categorie(nom), 
   FOREIGN KEY(licence) REFERENCES Licence(id), 
-  PRIMARY KEY(titre, langue)
+  PRIMARY KEY(titre, langue),
+  CHECK (page>0)
 ); 
+
+/*INSERT INTO Livre (titre,langue,page,resume,datePublication,categorie,licence) 
+VALUES ('Yeux Revolver','France',-3,
+'Était si différent de toi Quand jétais enfant, mon prince charmant Était bien autrement',
+'2000/01/13','Musique', 1); viole la contrainte de vérification « livre » de la relation « livre_page_check » */
+INSERT INTO Livre (titre,langue,page,resume,datePublication,categorie,licence) 
+VALUES ('Yeux Revolver','France',3,
+'Était si différent de toi Quand jétais enfant, mon prince charmant Était bien autrement',
+'2000/01/13','Musique', 1);
+INSERT INTO Livre (titre,langue,page,resume,datePublication,categorie,licence) 
+VALUES ('Ce soir je ne dors pas','France',3,
+'Était si différent de toi Quand jétais enfant, mon prince charmant Était bien autrement',
+'2000/01/13','Musique', 1);
+INSERT INTO Livre (titre,langue,page,resume,datePublication,categorie,licence) 
+VALUES ('Ce soir je ne dors pas','Allemand',3,
+'Était si différent de toi Quand jétais enfant, mon prince charmant Était bien autrement',
+'2000/01/13','Musique', 1);
+VALUES ('Ce soir je ne dors pas','Italien',3,
+'Était si différent de toi Quand jétais enfant, mon prince charmant Était bien autrement',
+'2000/01/13','Musique', 9);
+
+
 
 CREATE TABLE Vedette (
   dateLimite DATE, 
@@ -128,6 +186,13 @@ CREATE TABLE Abonnement (
     FOREIGN KEY (auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom)
 );
 
+INSERT INTO Abonnement (auteurNom,auteurPrenom,utilisateur) VALUES ('Kevin','Integration','Phil234@etu');
+INSERT INTO Abonnement (auteurNom,auteurPrenom,utilisateur) VALUES ('Kevin','Integration','Ron@edu');
+INSERT INTO Abonnement (auteurNom,auteurPrenom,utilisateur) VALUES ('Kevin','Integration','MariannaRo@tub');
+INSERT INTO Abonnement (auteurNom,auteurPrenom,utilisateur) VALUES ('Kevin','Olivera','Phil234@etu');
+--INSERT INTO Abonnement (auteurNom,utilisateur) VALUES ('Kevin','Phil234@etu'); La clé (auteurnom, auteurprenom)=(Kevin, Integration) n'est pas présente dans la table « auteur ».
+
+
 CREATE TABLE Aime (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
@@ -173,31 +238,3 @@ FROM(
     WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
 ) AS sousRequete
 WHERE sousRequete.dateLimite>DATE(NOW());
-    
-INSERT INTO Categorie (nom, description)
-VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
-INSERT INTO Categorie (nom, description)
-VALUES ('Bande Dessinée','Aventure Classiques Fantastique Heroïc Fantasy');
-INSERT INTO Categorie (nom, description)
-VALUES ('Culture','Arts généraux Architecture Cinéma Cinéma - Scénarios');
-
-
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (1,TRUE,FALSE,TRUE);
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (2,TRUE,TRUE,TRUE);
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (3,FALSE,FALSE,TRUE);
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (4,TRUE,FALSE,FALSE);
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (5,TRUE,TRUE,FALSE);
-INSERT INTO Licence (id, droitModification, partageMemeCondition, droitUtilisationCommercial)
-VALUES (6,FALSE,TRUE,FALSE);
-
-INSERT INTO Auteur (nom, prenom, biographie)
-VALUES ('Kevin','Integration', 'integre les étudiants en automne et au printemps');
-INSERT INTO Auteur (nom, prenom )
-VALUES ('Kevin','Olivera');
-INSERT INTO Auteur (nom,prenom )
-VALUES ('Dominique','DesMaths');
