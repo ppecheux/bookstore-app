@@ -38,6 +38,17 @@ CREATE TABLE Nationalite (
   pays VARCHAR(255) PRIMARY KEY
 );
 
+INSERT INTO Nationalite (pays) VALUES ('Pays-Bas');
+INSERT INTO Nationalite (pays) VALUES ('Norvège');
+INSERT INTO Nationalite (pays) VALUES ('Biélorussie');
+INSERT INTO Nationalite (pays) VALUES ('Belgique');
+INSERT INTO Nationalite (pays) VALUES ('Azerbaïdjan');
+INSERT INTO Nationalite (pays) VALUES ('Arménie');
+INSERT INTO Nationalite (pays) VALUES ('Autriche');
+INSERT INTO Nationalite (pays) VALUES ('Andorre');
+INSERT INTO Nationalite (pays) VALUES ('Albanie');
+INSERT INTO Nationalite (pays) VALUES ('Allemagne');
+
 CREATE TABLE Citoyen (
   pays VARCHAR(255), 
   auteurNom VARCHAR(255), 
