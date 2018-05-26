@@ -1,7 +1,7 @@
 /* REQUETES FONCTIONS */
 
 /* Récupération du nom prenom pour l'affichage sur la page d'accueil */
-SELECT *
+SELECT nom, prenom
 FROM UtilisateursEnregistres
 WHERE email = 'email_voulu';
 
@@ -13,6 +13,7 @@ FROM Livre;
 SELECT *
 FROM Livre, Ecrire
 WHERE Livre.titre=Ecrire.titre
+AND Livre.langue=Ecrire.langue
 AND Livre.titre LIKE '%titreVoulu%'
 AND auteurNom LIKE '%nomVoulu%'
 AND auteurPrenom LIKE '%prenomVoulu%';
