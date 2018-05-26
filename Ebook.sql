@@ -265,4 +265,12 @@ SELECT *
 FROM Livre
 WHERE categorie='categorieVoulue';
 
+/* Afficher une fiche auteur */
+
+SELECT *
+FROM Auteur
+WHERE Auteur.nom = 'nomVoulu'
+AND Auteur.prenom = 'prenomVoulu';
+
+
 
