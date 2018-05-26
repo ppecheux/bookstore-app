@@ -1,4 +1,6 @@
-﻿DROP VIEW vVedette;
+DROP VIEW vDiffAuteurEcrire;
+DROP VIEW vDiffLivreEcrire;
+DROP VIEW vVedette;
 DROP TABLE Ecrire;
 DROP TABLE Reference; 
 DROP TABLE Telechargement;
@@ -148,6 +150,15 @@ FROM(
 ) AS sousRequete
 WHERE sousRequete.dateLimite>DATE(NOW());
 
+CREATE VIEW vDiffLivreEcrire AS
+SELECT titre, langue FROM Livre
+EXCEPT
+SELECT titre, langue FROM Ecrire;
+
+CREATE VIEW vDiffAuteurEcrire AS
+SELECT nom, prenom FROM Auteur
+EXCEPT
+SELECT auteurNom, auteurPrenom FROM Ecrire;
     
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
