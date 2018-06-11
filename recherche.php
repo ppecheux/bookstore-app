@@ -8,8 +8,11 @@
 
   <table border="1">
     <tr><th>titre</th><th>langue</th><th>page</th><th>resume</th></tr>
-	<?php 
-		$vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', 'nf17p165', 'wUANb2Da');
+	<?php
+	
+	    $dbUser = 'nf17p165';
+	    $userPw = 'wUANb2Da';
+		$vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
 		
 		$vSql ="SELECT titre, langue, page, resume
 						FROM Livre
@@ -24,6 +27,8 @@
 				echo "<td>$row[resume]</td>";
 		  	echo "</tr>";
 		}
+		$vConn=NULL;
+		
 	?>
 	</table>
   <div align = "right"><a href="accueil.html">Retour à l'accueil</a></div>
