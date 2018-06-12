@@ -8,11 +8,11 @@
 
 	<div align="center">
 	<p>Renseignez vos informations:</p>
-		<form method="post" action="connexionPDO.php">
-			<label>Entrez optionellement votre nom </label> <input type="text" name="nom" />
-			<label>Entrez votre prenom </label> <input type="text" name="prenom" />
-			<label>Entrez votre adresse mail </label> <input type="text" name="email" />
-			<label>Entrez votre mot de passe </label> <input type="text" name="mdp" />
+		<form method="post" action="inscriptionUtilisateur.php">
+			<label>Entrez votre nom </label> <input type="text" name="nom" /></br></br>
+			<label>Entrez votre prenom </label> <input type="text" name="prenom" required/></br></br>
+			<label>Entrez votre adresse mail </label> <input type="text" name="email" required/></br></br>
+			<label>Entrez votre mot de passe </label> <input type="password" name="mdp" required/></br></br>
 		  <input type="submit" value="s'inscrire"/>
 		</form>
 	</div>
