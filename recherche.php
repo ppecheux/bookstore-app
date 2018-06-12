@@ -7,28 +7,29 @@
   <p>Voici les résultat de la recherche pour le mot clé <?php echo $_POST['motCle']?> : <p>
 
   <table border="1">
-    <tr><th>titre</th><th>langue</th><th>page</th><th>resume</th></tr>
+    <tr><th>titre</th><th>langue</th><th>page</th><th>resume</th><th>categorie</th></tr>
 	<?php
-	
+
 	    $dbUser = 'nf17p165';
 	    $userPw = 'wUANb2Da';
 		$vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
-		
-		$vSql ="SELECT titre, langue, page, resume
+
+		$vSql ="SELECT titre, langue, page, resume, categorie
 						FROM Livre
 						WHERE titre LIKE '%".$_POST['motCle']."%';";
 		$vQuery = $vConn->prepare($vSql);
 		$vQuery->execute();
-		while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) { 	
+		while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
 				echo "<tr>";
 		  	echo "<td>$row[titre]</td>";
 		  	echo "<td>$row[langue]</td>";
 		  	echo "<td>$row[page]</td>";
 				echo "<td>$row[resume]</td>";
+        echo "<td>$row[categorie]</td>";
 		  	echo "</tr>";
 		}
 		$vConn=NULL;
-		
+
 	?>
 	</table>
   <div align = "right"><a href="accueil.html">Retour à l'accueil</a></div>
