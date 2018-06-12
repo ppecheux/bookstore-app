@@ -10,8 +10,8 @@
     <tr><th>titre</th><th>langue</th><th>page</th><th>resume</th></tr>
 	<?php
 	
-	    $dbUser = 'nf17p165';
-	    $userPw = 'wUANb2Da';
+    $dbUser = 'nf17p165';
+    $userPw = 'wUANb2Da';
 		$vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
 		
 		$vSql ="SELECT titre, langue, page, resume
