@@ -6,13 +6,29 @@
 <body>
 	<center><h1>Bienvenue sur THE PIRATE BOOK !!!!!</h1></center>
 
-	<div align="center">
-	<p>Remplissez le formulaire suivant pour rechercher un livre :</p>	
+	<div align="left">
+	<h2>Remplissez le formulaire suivant pour rechercher un livre par son titre :</h2>
 		<form method="post" action="recherche.php">
-			<label>Entrez votre mot clé </label> <input type="text" name="motCle" />
+			<label>Titre </label> <input type="text" name="titre" />
 		  <input type="submit" value="Rechercher"/>
 		</form>
 	</div>
+	<div align="left">
+	<h2>Remplissez le formulaire suivant pour rechercher un auteur :</h2>
+		<form method="post" action="recherche.php">
+			<label>Nom auteur </label> <input type="text" name="auteurNom" value="" /><label> Prénom auteur </label><input type="text" name="auteurPrenom" value="" />
+		  <input type="submit" value="Rechercher"/>
+		</form>
+	</div>
+	<div align="left">
+	<h2>Remplissez le formulaire suivant pour rechercher les livres d'une catégorie :</h2>
+		<form method="post" action="recherche.php">
+			<label>Catégorie </label> <input type="text" name="categorie" />
+		  <input type="submit" value="Rechercher"/>
+		</form>
+	</div>
+
+
 	<div align="right">
 		<a href="pageIdentificationUtilisateur.html">Se connecter</a>
 	</div>
