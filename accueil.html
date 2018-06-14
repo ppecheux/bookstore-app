@@ -3,9 +3,20 @@
 	<title>Pirate Book</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<header>
 	<center><h1>Bienvenue sur THE PIRATE BOOK !!!!!</h1></center>
+	<nav>
+			<ul>
+				<li><a href="accueil.html">Rechercher livre</a></li>
+				<li><a href="auteur.html">Rechercher auteur</a></li>
+				<li><a href="profilUtilisateur.php">Mon profil</a></li>
+				<li><a href="pageIdentificationUtilisateur.html">Se connecter</a></li>
+				<li><a href="deco.php">Se déconnecter</a></li>
+			<ul/>
+		</nav>
+</header>
 
+<body>
 	<div align="left">
 	<h2>Remplissez le formulaire suivant pour rechercher un livre par son titre :</h2>
 		<form method="post" action="recherche.php">
@@ -26,11 +37,6 @@
 			<label>Catégorie </label> <input type="text" name="categorie" />
 		  <input type="submit" value="Rechercher"/>
 		</form>
-	</div>
-
-
-	<div align="right">
-		<a href="pageIdentificationUtilisateur.html">Se connecter</a>
 	</div>
 
 </body>

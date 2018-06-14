@@ -1,5 +1,23 @@
-<?php
+<html>
+<head>
+	<title>Pirate Book</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header>
+	<center><h1>Bienvenue sur THE PIRATE BOOK !!!!!</h1></center>
+	<nav>
+			<ul>
+				<li><a href="accueil.html">Rechercher livre</a></li>
+				<li><a href="auteur.html">Rechercher auteur</a></li>
+				<li><a href="profilUtilisateur.php">Mon profil</a></li>
+				<li><a href="pageIdentificationUtilisateur.html">Se connecter</a></li>
+				<li><a href="deco.php">Se déconnecter</a></li>
+			<ul/>
+		</nav>
+</header>
 
+<?php
+session_start();
 /** Connexion **/
 /*$dbUser = 'nf17p165';
 $userPw = 'wUANb2Da';
@@ -33,8 +51,9 @@ if (isset($pMdp) && isset($pEmail)){
 
 /** Traitement du résultat **/
 if ($identification == true) {
-	echo '<p><a href="profilUtilisateur.php">Profil</a>  ';
-  echo '<a href="accueil.html">Faire une recherche</a></p>';
+  $_SESSION['email'] = $pEmail;
+  header('Location: profilUtilisateur.php');
+  exit();
 }
 else {
   echo "<p>Erreur lors de l'identification</p>";
@@ -43,3 +62,4 @@ else {
 /** Déconnexion **/
 $connexion=null;
 ?>
+</html>

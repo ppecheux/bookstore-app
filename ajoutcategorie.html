@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Identification a the Pirate Book</title>
+	<title>Pirate Book</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <header>
@@ -16,18 +16,19 @@
 		</nav>
 </header>
 <body>
-	<h1>Identification</h1>
+  <h1>Ajout de Catégorie</h1>
 
 	<div align="center">
-	<p>Renseignez vos informations:</p>
-		<form method="post" action="identUtilisateur.php">
-			<label>Entrez votre adresse mail </label> <input type="text" name="email" required/></br></br>
-			<label>Entrez votre mot de passe </label> <input type="password" name="mdp" required/></br></br>
-			<input type="submit" value="S'identifier"/>
-		</form>
-		<form method="POST" action="pageInscriptionUtilisateur.html">
-				<input type="submit" value="S'inscrire"/>
+	<p>Remplissez le formulaire suivant :</p>
+		<form method="post" action="ajouterCategorie.php">
+			<label>Nom (*):</label> <input type="text" name="nomCategorie" required/>
+			<br><br>
+			<label>Description :</label> <input type="text" name="descriptionCategorie" />
+			<br><br><br>
+
+		  <input type="submit" value="Ajouter"/>
 		</form>
 	</div>
+
 </body>
 </html>
