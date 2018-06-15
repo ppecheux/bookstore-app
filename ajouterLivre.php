@@ -26,8 +26,10 @@ $date=$_POST['datePublicationLivre'];
 $categorie=$_POST['categorie'];
 $licence=$_POST['licence'];
 $auteur=$_POST['auteur'];
+$reference=$_POST['reference'];
 
 list($auteurnom, $auteurprenom) = split('[/]', $auteur);
+list($referenceNom, $referencePrenom) = split('[/]', $reference);
 
 /** Connexion **/
 $dbUser = 'nf17p165';
@@ -52,6 +54,22 @@ else {
 /** Préparation et exécution de la requête **/
 $sql = "INSERT INTO Ecrire (auteurnom, auteurprenom, titre, langue)
  VALUES ('$auteurnom', '$auteurprenom', '$titre', '$langue')";
+$result = $vConn->prepare($sql);
+$result->execute();
+
+/** Traitement du résultat **/
+
+if ($result) {
+  echo "<br>Insertion de l'ecriture";
+}
+else {
+  echo "<br>Erreur lors de l'insertion";
+}
+
+/** Preparation de la requête **/
+
+$sql = "INSERT INTO Reference (auteurnom, auteurprenom, titre, langue)
+ VALUES ('$referenceNom', '$referencePrenom', '$titre', '$langue')";
 $result = $vConn->prepare($sql);
 $result->execute();
 

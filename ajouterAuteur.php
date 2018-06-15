@@ -20,6 +20,7 @@
 $nom=$_POST['nomAuteur'];
 $prenom=$_POST['prenomAuteur'];
 $biographie=$_POST['biographieAuteur'];
+$pays=$_POST['pays'];
 
 /** Connexion **/
 $dbUser = 'nf17p165';
@@ -35,12 +36,38 @@ $result->execute();
 /** Traitement du résultat **/
 
 if ($result) {
-  echo "Insertion de $nom $prenom";
+  echo "<p>Insertion de $nom $prenom</p>";
 }
 else {
-  echo "Erreur lors de l'insertion";
+  echo "<p>Erreur lors de l'insertion</p>";
 }
 
+$sql = "INSERT INTO Nationalite (pays)
+ VALUES ('$pays')";
+$result = $vConn->prepare($sql);
+$result->execute();
+
+/** Traitement du résultat **/
+
+if ($result) {
+  echo "<p>Insertion de $pays</p>";
+}
+else {
+  echo "<p>Erreur lors de l'insertion</p>";
+}
+$sql = "INSERT INTO Citoyen (pays,auteurNom, auteurPrenom)
+ VALUES ('$pays', '$nom', '$prenom')";
+$result = $vConn->prepare($sql);
+$result->execute();
+
+/** Traitement du résultat **/
+
+if ($result) {
+  echo "<p>Insertion de citoyen</p>";
+}
+else {
+  echo "<p>Erreur lors de l'insertion</p>";
+}
 /** Déconnexion **/
 $vConn=null;
 ?>

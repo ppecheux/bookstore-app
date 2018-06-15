@@ -2,16 +2,16 @@ DROP VIEW vDiffAuteurEcrire;
 DROP VIEW vDiffLivreEcrire;
 DROP VIEW vVedette;
 DROP TABLE Ecrire;
-DROP TABLE Reference; 
+DROP TABLE Reference;
 DROP TABLE Telechargement;
-DROP TABLE Aime;  
-DROP TABLE Abonnement; 
-DROP TABLE Don; 
-DROP TABLE UtilisateursEnregistres; 
-DROP TABLE Vedette; 
+DROP TABLE Aime;
+DROP TABLE Abonnement;
+DROP TABLE Don;
+DROP TABLE UtilisateursEnregistres;
+DROP TABLE Vedette;
 DROP TABLE Livre;
-DROP TABLE Citoyen; 
-DROP TABLE Nationalite; 
+DROP TABLE Citoyen;
+DROP TABLE Nationalite;
 DROP TABLE Auteur;
 DROP TABLE Licence;
 DROP TABLE Categorie;
@@ -42,35 +42,35 @@ CREATE TABLE Nationalite (
 
 
 CREATE TABLE Citoyen (
-  pays VARCHAR(255), 
-  auteurNom VARCHAR(255), 
+  pays VARCHAR(255),
+  auteurNom VARCHAR(255),
   auteurPrenom VARCHAR(255),
-  FOREIGN KEY(pays) REFERENCES Nationalite(pays), 
+  FOREIGN KEY(pays) REFERENCES Nationalite(pays),
   FOREIGN KEY(auteurNom, auteurPrenom) REFERENCES Auteur(nom, prenom),
-  PRIMARY KEY(pays, auteurNom, auteurPrenom)
+  PRIMARY KEY(pays, auteurNom, auteadminurPrenom)
 );
 
 
 CREATE TABLE Livre (
-  titre VARCHAR(255), 
-  langue VARCHAR(255), 
-  page INTEGER NOT NULL, 
-  resume VARCHAR(255), 
-  datePublication DATE, 
-  categorie VARCHAR(255) NOT NULL, 
-  licence INTEGER NOT NULL, 
-  FOREIGN KEY(categorie) REFERENCES Categorie(nom), 
-  FOREIGN KEY(licence) REFERENCES Licence(id), 
+  titre VARCHAR(255),
+  langue VARCHAR(255),
+  page INTEGER NOT NULL,
+  resume VARCHAR(255),
+  datePublication DATE,
+  categorie VARCHAR(255) NOT NULL,
+  licence INTEGER NOT NULL,
+  FOREIGN KEY(categorie) REFERENCES Categorie(nom),
+  FOREIGN KEY(licence) REFERENCES Licence(id),
   PRIMARY KEY(titre, langue)
-); 
+);
 
 
 CREATE TABLE Vedette (
-  dateLimite DATE, 
-  phraseAccroche VARCHAR(255), 
+  dateLimite DATE,
+  phraseAccroche VARCHAR(255),
   titre VARCHAR(255),
-  langue VARCHAR(255), 
-  PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue), 
+  langue VARCHAR(255),
+  PRIMARY KEY (DateLimite, PhraseAccroche, titre, langue),
   FOREIGN KEY (titre, langue) REFERENCES Livre(titre, langue)
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE UtilisateursEnregistres (
 
 CREATE TABLE Don (
     montantDon FLOAT NOT NULL,
-    dateDon DATE,
+    dateDon DATE,admin
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     PRIMARY KEY (montantDon,dateDon,utilisateur),
     CHECK (montantDon>0)
@@ -113,7 +113,7 @@ CREATE TABLE Telechargement (
     utilisateur VARCHAR(255) REFERENCES UtilisateursEnregistres(email),
     titre VARCHAR(255),
     langue VARCHAR(255),
-    prixAchat FLOAT, 
+    prixAchat FLOAT,
     PRIMARY KEY(utilisateur,titre,langue),
     FOREIGN KEY (titre,langue) REFERENCES Livre(titre,langue)
 );
@@ -130,15 +130,15 @@ CREATE TABLE Reference (
 );
 
 
-CREATE TABLE Ecrire ( 
-    auteurNom VARCHAR(255), 
-    auteurPrenom VARCHAR(255), 
-    titre VARCHAR(255), 
-    langue VARCHAR(255), 
-    PRIMARY KEY (auteurNom,auteurPrenom,titre,langue), 
-    FOREIGN KEY(auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom), 
-    FOREIGN KEY(titre,langue) REFERENCES Livre(titre,langue) 
-); 
+CREATE TABLE Ecrire (
+    auteurNom VARCHAR(255),
+    auteurPrenom VARCHAR(255),
+    titre VARCHAR(255),
+    langue VARCHAR(255),
+    PRIMARY KEY (auteurNom,auteurPrenom,titre,langue),
+    FOREIGN KEY(auteurNom,auteurPrenom) REFERENCES Auteur(nom,prenom),
+    FOREIGN KEY(titre,langue) REFERENCES Livre(titre,langue)
+);
 
 
 CREATE VIEW vVedette AS
@@ -159,7 +159,7 @@ CREATE VIEW vDiffAuteurEcrire AS
 SELECT nom, prenom FROM Auteur
 EXCEPT
 SELECT auteurNom, auteurPrenom FROM Ecrire;
-    
+
 INSERT INTO Categorie (nom, description)
 VALUES ('Fiction','Aventure & Action Classiques Erotique Espionnage Fantastique Frisson & Terreur');
 INSERT INTO Categorie (nom, description)
@@ -189,30 +189,30 @@ INSERT INTO Auteur (nom,prenom)
 VALUES ('Dominique','DesMaths');
 
 INSERT INTO Nationalite (pays)
-VALUES ('France'); 
+VALUES ('France');
 INSERT INTO Nationalite (pays)
 VALUES ('UK');
 INSERT INTO Nationalite (pays)
 VALUES ('USA');
 
 INSERT INTO Citoyen (pays, auteurNom, auteurPrenom)
-VALUES ('France', 'Kevin', 'Integration'); 
+VALUES ('France', 'Kevin', 'Integration');
 INSERT INTO Citoyen (pays, auteurNom, auteurPrenom)
-VALUES ('UK', 'Kevin', 'Olivera'); 
+VALUES ('UK', 'Kevin', 'Olivera');
 INSERT INTO Citoyen (pays, auteurNom, auteurPrenom)
-VALUES ('USA', 'Dominique', 'DesMaths'); 
+VALUES ('USA', 'Dominique', 'DesMaths');
 
 
 INSERT INTO Livre (titre, langue, page, resume, datePublication, categorie, licence)
-VALUES ('plaquette de l integration', 'français', '30','bonne integ !', '2015-06-22', 'Culture', '1'); 
+VALUES ('plaquette de l integration', 'français', '30','bonne integ !', '2015-06-22', 'Culture', '1');
 INSERT INTO Livre (titre, langue,  page, categorie, licence)
 VALUES ('maths for all', 'anglais', '351', 'Fiction', '5'); 
 
 
 INSERT INTO Vedette (dateLimite, phraseAccroche, titre, langue)
-VALUES ('2018-12-31', 'integ 4 ever', 'plaquette de l integration', 'français'); 
+VALUES ('2018-12-31', 'integ 4 ever', 'plaquette de l integration', 'français');
 INSERT INTO Vedette (dateLimite, phraseAccroche, titre, langue)
-VALUES ('2022-08-13', 'An amazing journey through maths !', 'maths for all', 'anglais'); 
+VALUES ('2022-08-13', 'An amazing journey through maths !', 'maths for all', 'anglais');
 
 INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','cenestpasuneaddresse');
@@ -223,34 +223,33 @@ VALUES ('anonyme','cettePersonneNaPasDAdresse','passe');
 
 
 INSERT INTO Don (montantDon, dateDon, utilisateur)
-VALUES ('5.20', '2015-04-11', 'adresse@etu.utc.fr'); 
+VALUES ('5.20', '2015-04-11', 'adresse@etu.utc.fr');
 INSERT INTO Don (montantDon, dateDon, utilisateur)
 VALUES ('100.001', '2018-12-08', 'cettePersonneNaPasDAdresse');
 
 INSERT INTO Abonnement (auteurNom, auteurPrenom, utilisateur)
-VALUES ('Dominique', 'DesMaths', 'cenestpasuneaddresse'); 
+VALUES ('Dominique', 'DesMaths', 'cenestpasuneaddresse');
 INSERT INTO Abonnement (auteurNom, auteurPrenom, utilisateur)
-VALUES ('Kevin', 'Olivera', 'adresse@etu.utc.fr'); 
+VALUES ('Kevin', 'Olivera', 'adresse@etu.utc.fr');
 
 
 INSERT INTO Aime (utilisateur, titre, langue)
-VALUES ('adresse@etu.utc.fr', 'maths for all', 'anglais'); 
+VALUES ('adresse@etu.utc.fr', 'maths for all', 'anglais');
 INSERT INTO Aime (utilisateur, titre, langue)
-VALUES ('cettePersonneNaPasDAdresse', 'plaquette de l integration', 'français'); 
+VALUES ('cettePersonneNaPasDAdresse', 'plaquette de l integration', 'français');
 
 
 INSERT INTO Telechargement (utilisateur, titre, langue, prixAchat)
-VALUES ('adresse@etu.utc.fr', 'plaquette de l integration', 'français', '5.30'); 
+VALUES ('adresse@etu.utc.fr', 'plaquette de l integration', 'français', '5.30');
 INSERT INTO Telechargement (utilisateur, titre, langue)
-VALUES ('cettePersonneNaPasDAdresse', 'maths for all', 'anglais'); 
+VALUES ('cettePersonneNaPasDAdresse', 'maths for all', 'anglais');
 
 
 INSERT INTO Reference (auteurNom, auteurPrenom, titre, langue)
-VALUES ('Kevin', 'Olivera', 'maths for all', 'anglais'); 
+VALUES ('Kevin', 'Olivera', 'maths for all', 'anglais');
 
 
 INSERT INTO Ecrire (auteurNom, auteurPrenom, titre, langue)
-VALUES ('Kevin', 'Integration', 'plaquette de l integration', 'français'); 
+VALUES ('Kevin', 'Integration', 'plaquette de l integration', 'français');
 INSERT INTO Ecrire (auteurNom, auteurPrenom, titre, langue)
-VALUES ('Dominique', 'DesMaths', 'maths for all', 'anglais'); 
-
+VALUES ('Dominique', 'DesMaths', 'maths for all', 'anglais');

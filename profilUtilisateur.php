@@ -28,12 +28,12 @@
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       echo "<p>Bonjour ".$row['nom']." ".$row['prenom']."</p>";
     }
-    if ($_SESSION['email'] == "admin"){
+    if ($_SESSION['email'] == "admin@admin.fr"){
       echo '<nav>
     			<ul>
     				<li><a href="ajoutlivre.php">Ajouter livre</a></li>
     				<li><a href="ajoutauteur.html">Ajouter auteur</a></li>
-    				<li><a href="ajoutcategorie.php">Ajouter catégorie</a></li>
+    				<li><a href="ajoutcategorie.html">Ajouter catégorie</a></li>
     			<ul/>
     		</nav>';
     }

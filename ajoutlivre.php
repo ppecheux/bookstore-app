@@ -37,8 +37,8 @@
 
 			while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
 				echo "<option value='".$row['nom']."/".$row['prenom']."'>".$row['nom']." ".$row['prenom']."</option>";
-		}
-
+			}
+			$vConn = NULL;
       ?>
 		</select><br><br>
 			Catégorie (*): <select name="categorie">
@@ -56,8 +56,8 @@
 
 			while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
 				echo "<option value='".$row['nom']."'>".$row['nom']."</option>";
-		}
-
+			}
+			$vConn = NULL;
       ?>
 		</select> <br><br>
 			Licence (*): <select name="licence">
@@ -75,8 +75,8 @@
 
 			while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
 				echo "<option value='".$row['id']."'>".$row['id']."</option>";
-		}
-
+			}
+			$vConn = NULL;
       ?>
 
 
@@ -91,8 +91,27 @@
 			<label>Resume :</label> <input type="text" name="ResumeLivre" />
 			<br><br>
 			<label>Date de Publication :</label> <input type="text" name="datePublicationLivre" />
-			<br><br><br>
+			<br><br>
+			Référence Auteur : <select name="reference">
+	      <?php
 
+	      $dbUser = 'nf17p165';
+		    $userPw = 'wUANb2Da';
+				$vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
+
+				$vSql ="SELECT nom, prenom
+							FROM Auteur ;";
+
+				$vQuery = $vConn->prepare($vSql);
+				$vQuery->execute();
+
+				while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
+					echo "<option value='".$row['nom']."/".$row['prenom']."'>".$row['nom']." ".$row['prenom']."</option>";
+				}
+				$vConn = NULL;
+				?>
+			</select>
+			<br><br>
 		  <input type="submit" value="Ajouter"/>
 		</form>
 	</div>
