@@ -29,10 +29,13 @@
     $langue = $_GET['langue'];
     $email = $_SESSION['email'];
 
-    $sql = "INSERT INTO Auteur (nom, prenom, biographie)
-     VALUES ('$nom', '$prenom', '$biographie')";
+    $sql = "INSERT INTO aime (utilisateur, titre, langue)
+     VALUES ('$email', '$titre', '$langue')";
+
     $result = $vConn->prepare($sql);
     $result->execute();
+
+    echo "Vous avez aimé le livre";
 
   } else {
     echo "Vous devez être connecté pour aimer un livre";
