@@ -25,8 +25,9 @@
     if(isset($_POST['titre'])){
       $titre = $_POST['titre'];
       echo '<p>Voici les livres dont les titres correspondent à : <b>'.$titre.'</b></p>';
-      $vSql ="SELECT titre, langue, page, resume
-              FROM Livre
+      $vSql ="SELECT L.titre, L.langue, L.page, L.resume, E.auteurNom, E.auteurPrenom
+              FROM Livre L JOIN Ecrire E
+              ON L.titre=E.titre AND L.langue=E.langue
               WHERE titre LIKE '%$titre%';";
     }else if(isset($_POST['auteurNom']) || isset($_POST['auteurPrenom'])) {
       $nom = $_POST['auteurNom'];
@@ -45,7 +46,7 @@
     }
 
     echo '<table border="1">';
-    echo '<tr><th>titre</th><th>langue</th><th>page</th><th>resume</th></tr>';
+    echo '<tr><th>titre</th><th>langue</th><th>page</th><th>resume</th><th>Auteur</th></th><th>Aime</th></tr>';
     $vQuery = $vConn->prepare($vSql);
     $vQuery->execute();
     while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
@@ -54,6 +55,8 @@
       echo "<td>$row[langue]</td>";
       echo "<td>$row[page]</td>";
       echo "<td>$row[resume]</td>";
+      echo "<td>$row[auteurPrenom] $row[auteurNom]</td>";
+      echo '<td><a href="aime.php?titre='.$row['titre'].'&langue='.$row['langue'].'">Aime</a>';
       echo "</tr>";
     }
     echo '</table>';
