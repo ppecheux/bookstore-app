@@ -37,6 +37,43 @@
     			<ul/>
     		</nav>';
     }
+
+		$sql = "SELECT titre, langue FROM Aime WHERE utilisateur = '".$_SESSION['email']."';";
+		$result = $connexion->prepare($sql);
+    $result->execute();
+
+		echo '<br>Vous aimez les livres suivants :';
+
+		echo '<table border="1">';
+    echo '<tr><th>titre</th><th>langue</th></tr>';
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			echo "<tr>";
+      echo "<td>$row[titre]</td>";
+      echo "<td>$row[langue]</td>";
+      echo "</tr>";
+    }
+		echo '</table>';
+
+		$sql = "SELECT auteurnom, auteurprenom
+		FROM abonnement
+		WHERE utilisateur = '".$_SESSION['email']."';";
+		$result = $connexion->prepare($sql);
+    $result->execute();
+
+		echo '<br>Vous êtes abonné aux auteurs suivants :';
+
+		echo '<table border="1">';
+    echo '<tr><th>Nom</th><th>Prénom</th></tr>';
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			echo "<tr>";
+      echo "<td>$row[auteurnom]</td>";
+      echo "<td>$row[auteurprenom]</td>";
+      echo "</tr>";
+    }
+		echo '</table>';
+
   } else {
 		header('Location: pageIdentificationUtilisateur.html');
 	  exit();
