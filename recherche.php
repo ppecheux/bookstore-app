@@ -56,7 +56,7 @@
       echo "<td>$row[page]</td>";
       echo "<td>$row[resume]</td>";
       echo "<td>".$row['auteurprenom']." ".$row['auteurnom']."</td>";
-      echo '<td><a href="aime.php?titre='.$row['titre'].'&langue='.$row['langue'].'">Aime '.$row['titre'].'</a>';
+      echo '<td><a href="aime.php?titre='.$row['titre'].'&langue='.$row['langue'].'">Aimer '.$row['titre'].'</a>';
       echo '<td><a href="telecharger.php?titre='.$row['titre'].'&langue='.$row['langue'].'">Télécharger '.$row['titre'].'</a>';
       echo "</tr>";
     }
