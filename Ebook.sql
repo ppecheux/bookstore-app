@@ -206,7 +206,7 @@ VALUES ('USA', 'Dominique', 'DesMaths');
 INSERT INTO Livre (titre, langue, page, resume, datePublication, categorie, licence)
 VALUES ('plaquette de l integration', 'français', '30','bonne integ !', '2015-06-22', 'Culture', '1');
 INSERT INTO Livre (titre, langue,  page, categorie, licence)
-VALUES ('maths for all', 'anglais', '351', 'Fiction', '5'); 
+VALUES ('maths for all', 'anglais', '351', 'Fiction', '5');
 
 
 INSERT INTO Vedette (dateLimite, phraseAccroche, titre, langue)
@@ -253,3 +253,6 @@ INSERT INTO Ecrire (auteurNom, auteurPrenom, titre, langue)
 VALUES ('Kevin', 'Integration', 'plaquette de l integration', 'français');
 INSERT INTO Ecrire (auteurNom, auteurPrenom, titre, langue)
 VALUES ('Dominique', 'DesMaths', 'maths for all', 'anglais');
+
+
+--select count(titre), auteurNom, auteurPrenom from ecrire group by auteurNom, auteurPrenom;
