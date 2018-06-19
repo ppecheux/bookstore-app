@@ -24,7 +24,7 @@ $description=$_POST['descriptionCategorie'];
 $dbUser = 'nf17p165';
 $userPw = 'wUANb2Da';
 $vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
-<li><a href="deco.php">Se déconnecter</a></li>
+
 
 /** Préparation et exécution de la requête **/
 $sql = "INSERT INTO Categorie (nom, description)

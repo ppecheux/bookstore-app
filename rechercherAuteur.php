@@ -29,7 +29,7 @@
       echo "<p>Résultat de la recherche de <b>".$nom." ".$prenom."</b></p>";
       $vSql ="SELECT nom, prenom
               FROM Auteur
-              WHERE nom LIKE '%$nom%' AND prenom LIKE '%$prenom%';";
+              WHERE LOWER(nom) LIKE LOWER('%$nom%') AND LOWER(prenom) LIKE LOWER('%$prenom%');";
     }
 
     echo '<table border="1">';

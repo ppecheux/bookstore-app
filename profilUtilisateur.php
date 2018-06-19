@@ -74,10 +74,51 @@
     }
 		echo '</table>';
 
+		$sql = "SELECT titre, langue, prixachat
+		FROM telechargement
+		WHERE utilisateur = '".$_SESSION['email']."';";
+		$result = $connexion->prepare($sql);
+    $result->execute();
+
+		echo '<br>Vous avez téléchargé les livres suivants :';
+
+		echo '<table border="1">';
+    echo '<tr><th>Titre</th><th>Langue</th><th>Prix Achat</th></tr>';
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			echo "<tr>";
+      echo "<td>$row[titre]</td>";
+      echo "<td>$row[langue]</td>";
+			echo "<td>$row[prixachat]</td>";
+      echo "</tr>";
+    }
+		echo '</table>';
+
+		$sql = "SELECT montantdon, datedon
+		FROM don
+		WHERE utilisateur = '".$_SESSION['email']."';";
+		$result = $connexion->prepare($sql);
+	  $result->execute();
+
+		echo '<br>Vous avez effectué les dons suivants pour le site :';
+
+		echo '<table border="1">';
+    echo '<tr><th>Montant</th><th>Date</th></tr>';
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+			echo "<tr>";
+      echo "<td>$row[montantdon]</td>";
+      echo "<td>$row[datedon]</td>";
+      echo "</tr>";
+    }
+		echo '</table>';
+
+
+
   } else {
 		header('Location: pageIdentificationUtilisateur.html');
 	  exit();
 	}
-
+$connexion=null;
 ?>
 </html>

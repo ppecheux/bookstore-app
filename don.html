@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title>Pirate Book</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<header>
+	<center><h1>Effectuer un don (on vous aime fort les matelots)</h1></center>
+	<nav>
+			<ul>
+				<li><a href="accueil.html">Rechercher livre</a></li>
+				<li><a href="auteur.html">Rechercher auteur</a></li>
+				<li><a href="profilUtilisateur.php">Mon profil</a></li>
+				<li><a href="pageIdentificationUtilisateur.html">Se connecter</a></li>
+				<li><a href="deco.php">Se déconnecter</a></li>
+			<ul/>
+		</nav>
+</header>
+<body>
+
+	<div align="center">
+	<p>Remplissez le formulaire suivant :</p>
+		<form method="post" action="donner.php">
+			<label>MontantDon(*):</label> <input type="number" name="don" min='1' required/>
+			<br><br>
+
+		  <input type="submit" value="Donner"/>
+		</form>
+	</div>
+
+</body>
+</html>
