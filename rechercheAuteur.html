@@ -12,6 +12,8 @@
 				<li><a href="profilUtilisateur.php">Mon profil</a></li>
 				<li><a href="pageIdentificationUtilisateur.html">Se connecter</a></li>
 				<li><a href="deco.php">Se déconnecter</a></li>
+				<li><a href="don.html">Faire un don</a></li>
+				<li><a href="pageVedettes.php">Livres en Vedette</a></li>
 			<ul/>
 		</nav>
 </header>
