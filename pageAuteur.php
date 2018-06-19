@@ -26,6 +26,12 @@
     $userPw = 'wUANb2Da';
     $vConn = new PDO('pgsql:host=tuxa.sme.utc;port=5432;dbname=dbnf17p165', $dbUser, $userPw);
 
+
+
+
+
+
+
     $vSql ="SELECT A.nom, A.prenom, A.biographie, C.pays
             FROM Auteur A JOIN Citoyen C
             ON A.nom = C.auteurNom AND A.prenom = C.auteurPrenom
@@ -38,6 +44,12 @@
       echo "Prénom : $row[prenom]<br>";
       echo "Biographie : $row[biographie]<br>";
       echo "Pays : $row[pays]<br>";
+    }
+    $vSql ="select count(titre), auteurNom, auteurPrenom from ecrire  where auteurNom = '$nom' and auteurPrenom = '$prenom' group by auteurNom, auteurPrenom;";
+    $vQuery = $vConn->prepare($vSql);
+    $vQuery->execute();
+    while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
+      echo "Nombre de livre de cet auteur : $row[count]<br>" ;
     }
 
     echo "<br><br>Livres : <br>";
