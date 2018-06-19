@@ -142,13 +142,12 @@ CREATE TABLE Ecrire (
 
 
 CREATE VIEW vVedette AS
-SELECT titre,langue,phraseAccroche,page,resume,datePublication,categorie,licence
-FROM(
-    SELECT Livre.titre, Livre.langue, Livre.datePublication, Livre.page, Livre.resume, Livre.categorie, Livre.licence, Vedette.dateLimite, Vedette.phraseAccroche
-    FROM Livre,Vedette
-    WHERE (Livre.titre=Vedette.titre) AND (Livre.langue=Vedette.langue)
-) AS sousRequete
-WHERE sousRequete.dateLimite>DATE(NOW());
+SELECT L.titre, L.langue, L.datePublication, L.page, L.resume, L.categorie, L.licence,
+ V.dateLimite, V.phraseAccroche,
+ E.auteurNom,E.auteurPrenom
+FROM Livre L,Vedette V, Ecrire E
+WHERE (L.titre=V.titre) AND (L.langue=V.langue) AND V.dateLimite>DATE(NOW())
+AND E.titre = L.titre AND V.langue=E.langue;
 
 CREATE VIEW vDiffLivreEcrire AS
 SELECT titre, langue FROM Livre
@@ -213,6 +212,11 @@ INSERT INTO Vedette (dateLimite, phraseAccroche, titre, langue)
 VALUES ('2018-12-31', 'integ 4 ever', 'plaquette de l integration', 'français');
 INSERT INTO Vedette (dateLimite, phraseAccroche, titre, langue)
 VALUES ('2022-08-13', 'An amazing journey through maths !', 'maths for all', 'anglais');
+INSERT INTO Vedette (SELECT L.titre, L.langue, V.phraseAccroche, L.datePublication, L.page, L.resume, L.categorie, L.licence,
+ V.dateLimite, V.phraseAccroche
+FROM Livre L,Vedette V
+WHERE (L.titre=V.titre) AND (L.langue=V.langue) AND V.dateLimite>DATE(NOW());dateLimite, phraseAccroche, titre, langue)
+VALUES ('2018-01-31', 'integ 4 ever', 'plaquette de l integration', 'français');
 
 INSERT INTO UtilisateursEnregistres (nom, prenom, motDePasse, email)
 VALUES ('Kevin','Integration', 'pcqeudçjdé','cenestpasuneaddresse');
@@ -256,3 +260,8 @@ VALUES ('Dominique', 'DesMaths', 'maths for all', 'anglais');
 
 
 --select count(titre), auteurNom, auteurPrenom from ecrire group by auteurNom, auteurPrenom;
+SELECT L.titre, L.langue, L.datePublication, L.page, L.resume, L.categorie, L.licence,
+ V.dateLimite, V.phraseAccroche,
+ E.auteurNom,E.auteurPrenom
+FROM Livre L,Vedette V, Ecrire E
+WHERE (L.titre=V.titre) AND (L.langue=V.langue) AND V.dateLimite>DATE(NOW()) AND E.titre = L.titre AND V.langue=E.langue;
