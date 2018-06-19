@@ -36,6 +36,7 @@
     				<li><a href="ajoutlivre.php">Ajouter livre</a></li>
     				<li><a href="ajoutauteur.html">Ajouter auteur</a></li>
     				<li><a href="ajoutcategorie.html">Ajouter catégorie</a></li>
+						<li><a href="ajoutVedette.php">Ajouter un livre en vedette</a></li>
     			<ul/>
     		</nav>';
     }
