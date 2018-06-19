@@ -31,7 +31,7 @@
 
     echo "<br><br>Livres : <br>";
     echo '<table border="1">';
-    echo '<tr><th>titre</th><th>langue</th><th>page</th><th>resume</th></tr>';
+    echo '<tr><th>titre</th><th>langue</th><th>page</th><th>resume</th><th>categorie</th><th>licence</th><th>phraseaccroche</th><th>auteur</th></tr>';
 
     while ($row = $vQuery->fetch(PDO::FETCH_ASSOC)) {
       echo "<tr>";
@@ -41,10 +41,9 @@
       echo "<td>$row[resume]</td>";
       echo "<td>$row[categorie]</td>";
       echo "<td>$row[licence]</td>";
-      echo "<td>$row[dateLimite]</td>";
-      echo "<td>$row[phraseAccroche]</td>";
-      echo "<td>$row[auteurNom]</td>";
-      echo "<td>$row[auteurPrenom]</td>";
+
+      echo "<td>$row[phraseaccroche]</td>";
+      echo "<td>$row[auteurprenom]"." "."$row[auteurnom]</td>";
       echo "</tr>";
     }
     echo '</table>';
